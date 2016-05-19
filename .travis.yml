@@ -7,7 +7,7 @@ services:
 
 before_install:
 - docker pull ilcdirac/slc6-base
-- docker run -t -t ilcdirac/sl6-base /bin/bash 
+- docker run -i -t ilcdirac/sl6-base /bin/bash 
 - docker ps -a
 
 script:
