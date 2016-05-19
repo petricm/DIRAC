@@ -1,5 +1,7 @@
 language: python
 
+sudo: required
+
 matrix:
   include:
     - python: 2.7
@@ -7,8 +9,6 @@ matrix:
     - os: linux
       language: generic
       env: TEST_ENV=INTEGRATION
-      sudo: true
-  fast_finish: true
 
 services:
   - docker
