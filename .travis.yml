@@ -1,14 +1,6 @@
-language: python
-
 sudo: required
 
-matrix:
-  include:
-    - python: 2.7
-      env: TEST_ENV=UNITTEST
-    - os: linux
-      language: generic
-      env: TEST_ENV=INTEGRATION
+env: TEST_ENV=INTEGRATION
 
 services:
   - docker
