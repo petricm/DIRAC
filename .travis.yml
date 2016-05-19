@@ -1,8 +1,27 @@
-sudo: true
+language: python
 
+matrix:
+  include:
+    - python: 2.7
+      env: TEST_ENV=UNITTEST
+    - os: linux
+      language: generic
+      env: TEST_ENV=INTEGRATION
+      sudo: true
+  fast_finish: true
+
+services:
+  - docker
+
+# command to install dependencies
 install:
-  - curl -sLo - http://j.mp/install-travis-docker | sh -xe
+  - if [ "$TEST_ENV" = "UNITTEST" ]; then pip install -r requirements.txt; fi
+  - if [ "$TEST_ENV" = "INTEGRATION" ]; then docker pull ilcdirac/slc6-base; fi
 
+# command to run tests
 script:
-  - ./run 'docker build -t test . && docker run test'
-  - ./run 'docker-compose up -d blog && docker ps'
+  - export PYTHONPATH=${PWD%/*}
+  - ls $PYTHONPATH
+  - if [ "$TEST_ENV" = "UNITTEST" ]; then py.test; fi
+  - if [ "$TEST_ENV" = "INTEGRATION" ]; then docker run -i -t ilcdirac/slc6-base /bin/bash; fi
+  - if [ "$TEST_ENV" = "INTEGRATION" ]; then ls; fi
