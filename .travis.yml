@@ -7,6 +7,9 @@ services:
 
 before_install:
 - docker pull ilcdirac/slc6-base
+- docker ps -a
+- docker run -d -p 127.0.0.1:80:4567 ilcdirac/slc6-base /bin/sh -c "ls; cd; ls;"
+- docker ps -a
 - docker run ilcdirac/slc6-base /bin/bash -c "ls; cd; ls;"
 - docker ps -a
 
