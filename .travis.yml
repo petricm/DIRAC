@@ -23,3 +23,4 @@ script:
   - export PYTHONPATH=${PWD%/*}
   - ls $PYTHONPATH
   - if [ "$TEST_ENV" = "UNITTEST" ]; then py.test; fi
+  - if [ "$TEST_ENV" = "INTEGRATION" ]; then sudo docker run -i -t ilcdirac/slc6-base /bin/bash; fi
