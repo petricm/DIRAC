@@ -1,26 +1,15 @@
-language: python
+sudo: required
 
-matrix:
-  include:
-    - python: 2.7
-      env: TEST_ENV=UNITTEST
-    - os: linux
-      language: generic
-      env: TEST_ENV=INTEGRATION
-      sudo: required
-  fast_finish: true
+language: ruby
 
 services:
   - docker
 
-# command to install dependencies
-install:
-  - if [ "$TEST_ENV" = "UNITTEST" ]; then pip install -r requirements.txt; fi
-  - if [ "$TEST_ENV" = "INTEGRATION" ]; then sudo docker pull ilcdirac/slc6-base; fi
+before_install:
+- docker pull carlad/sinatra
+- docker run -d -p 127.0.0.1:80:4567 carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec foreman start;"
+- docker ps -a
+- docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
 
-# command to run tests
 script:
-  - export PYTHONPATH=${PWD%/*}
-  - ls $PYTHONPATH
-  - if [ "$TEST_ENV" = "UNITTEST" ]; then py.test; fi
-  - if [ "$TEST_ENV" = "INTEGRATION" ]; then sudo docker run -i -t ilcdirac/slc6-base /bin/bash; fi
+- bundle exec rake test
