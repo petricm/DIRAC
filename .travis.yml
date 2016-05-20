@@ -4,16 +4,17 @@ env: TEST_ENV=INTEGRATION
 
 services:
   - docker
+  - mysql
 
 # command to install dependencies
 install:
-  - if [ "$TEST_ENV" = "UNITTEST" ]; then pip install -r requirements.txt; fi
-  - if [ "$TEST_ENV" = "INTEGRATION" ]; then docker pull ilcdirac/slc6-base; fi
+  - docker pull ilcdirac/slc6-base
 
 # command to run tests
 script:
   - export PYTHONPATH=${PWD%/*}
   - ls $PYTHONPATH
-  - if [ "$TEST_ENV" = "UNITTEST" ]; then py.test; fi
-  - if [ "$TEST_ENV" = "INTEGRATION" ]; then docker run -i -t ilcdirac/slc6-base /bin/bash -c "ls; cd; ls;"; fi
-  - if [ "$TEST_ENV" = "INTEGRATION" ]; then ls; fi
+  - docker run -d -i -t -h localhost -v ${PWD}:/root/TestCode/DIRAC ilcdirac/slc6-base /bin/bash
+  - export CONTAINER=`sudo docker ps -q`
+  - docker exec $CONTAINER /bin/bash -c "cd && export VAR_Release=v6r14 && source TestCode/DIRAC/tests/Jenkins/dirac_ci.sh && fullInstallDIRAC"
+
