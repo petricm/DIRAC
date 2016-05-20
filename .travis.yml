@@ -16,5 +16,5 @@ script:
   - ls $PYTHONPATH
   - docker run -d -i -t -h localhost -v ${PWD}:/root/TestCode/DIRAC ilcdirac/slc6-base /bin/bash
   - export CONTAINER=`sudo docker ps -q`
-  - docker exec $CONTAINER /bin/bash -c "cd && export VAR_Release=v6r14 && ls TestCode/DIRAC"
+  - docker exec $CONTAINER /bin/bash -c "cd && export VAR_Release=v6r14 && source TestCode/DIRAC/tests/Jenkins/dirac_ci.sh && fullInstallDIRAC"
 
