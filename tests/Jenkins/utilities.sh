@@ -62,16 +62,17 @@ function findRelease(){
 			return
 		fi
 	        echo "e" 
-		git checkout integration
+		#git checkout integration
+		wget -O $TESTCODE/releases.cfg https://raw.githubusercontent.com/DIRACGrid/DIRAC/integration/releases.cfg
 	        echo "f" 
 		# get the releases.cfg file
 	        echo "g" 
-		cp $TESTCODE/DIRAC/releases.cfg $TESTCODE/releases.cfg
+		#cp $TESTCODE/DIRAC/releases.cfg $TESTCODE/releases.cfg
 	        echo "h" 
 		# reset the branch
 	        echo "a" 
 		echo $currentBranch
-		git checkout $currentBranch
+		#git checkout $currentBranch
 		cd $cwd
 		if [ $? -ne 0 ]
 		then
