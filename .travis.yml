@@ -24,7 +24,7 @@ install:
 script:
   - export PYTHONPATH=${PWD%/*}
   - ls $PYTHONPATH
-  - docker run -d -i -t -h localhost -v ${PWD}:/root/TestCode/DIRAC ilcdirac/slc6-base /bin/bash
+  - docker run -d -i -t -p 3306:3306 -h localhost -v ${PWD}:/root/TestCode/DIRAC ilcdirac/slc6-base /bin/bash
   - export CONTAINER=`sudo docker ps -q`
   - docker exec $CONTAINER /bin/bash -c "cd && source TestCode/DIRAC/tests/Jenkins/setup_travis.sh && source TestCode/DIRAC/tests/Jenkins/dirac_ci.sh && fullInstallDIRAC"
 
