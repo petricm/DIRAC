@@ -1,6 +1,7 @@
 #!/bin/sh
 
-export VAR_Release=v6r14
+#export VAR_Release=v6r14
+export DIRACBRANCH=v6r14
 
 export DB_USER=travis
 export DB_ROOTUSER=root
