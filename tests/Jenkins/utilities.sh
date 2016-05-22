@@ -357,6 +357,7 @@ function getCFGFile(){
 
 	cp $TESTCODE/DIRAC/tests/Jenkins/install.cfg $SERVERINSTALLDIR/
 	sed -i s/VAR_Release/$projectVersion/g $SERVERINSTALLDIR/install.cfg
+	cat $SERVERINSTALLDIR/install.cfg
 }
 
 
