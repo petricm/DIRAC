@@ -1,11 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
-#export VAR_Release=v6r14
-export DIRACBRANCH=v6r14
+DIRACBRANCH=v6r14
 
-export DB_USER=travis
-export DB_ROOTUSER=root
-export DB_HOST=127.0.0.1
-export DB_PORT=""
-export DB_PASSWORD=""
-export DB_ROOTPWD=""
+DB_USER=travis
+DB_ROOTUSER=root
+DB_HOST=127.0.0.1
+DB_PORT=""
+DB_PASSWORD=""
+DB_ROOTPWD=""
