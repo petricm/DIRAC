@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIRACBRANCH=v6r14
+DIRACBRANCH=rel-v6r14
 
 DB_USER=travis
 DB_ROOTUSER=root
