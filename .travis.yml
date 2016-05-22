@@ -14,6 +14,7 @@ addons:
 
 before_install:
   - mysql -e "create database IF NOT EXISTS test;" -uroot
+  - mysqladmin -u root password testDirac
 
 # command to install dependencies
 install:
