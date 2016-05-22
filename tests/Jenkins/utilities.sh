@@ -42,18 +42,16 @@ function default(){
 
 function findRelease(){
 	echo '==> [findRelease]'
-	echo "a"
+
 	# store the current branch
 	currentBranch=`git --git-dir=$TESTCODE/DIRAC/.git rev-parse --abbrev-ref HEAD`
-        echo "b" 
+
 	if [ $currentBranch == 'integration' ]
 	then
-	        echo "c" 
 		echo 'we were already on integration, no need to change'
 		# get the releases.cfg file
 		cp $TESTCODE/DIRAC/releases.cfg $TESTCODE/releases.cfg
 	else
-	        echo "d" 
 		cwd=$PWD
 		cd $TESTCODE/DIRAC/
 		if [ $? -ne 0 ]
@@ -61,18 +59,10 @@ function findRelease(){
 			echo 'ERROR: cannot change to ' $TESTCODE/DIRAC
 			return
 		fi
-	        echo "e" 
 		#git checkout integration
 		wget -O $TESTCODE/releases.cfg https://raw.githubusercontent.com/DIRACGrid/DIRAC/integration/releases.cfg
-	        echo "f" 
 		# get the releases.cfg file
-	        echo "g" 
-		#cp $TESTCODE/DIRAC/releases.cfg $TESTCODE/releases.cfg
-	        echo "h" 
-		# reset the branch
-	        echo "a" 
 		echo $currentBranch
-		#git checkout $currentBranch
 		cd $cwd
 		if [ $? -ne 0 ]
 		then
@@ -93,7 +83,7 @@ function findRelease(){
 	# Match project ( DIRAC ) version from releases.cfg
 
 	# If I don't specify a DIRACBRANCH, it will get the latest "production" release
-  # First, try to find if we are on a production tag
+	# First, try to find if we are on a production tag
 	if [ ! -z "$DIRACBRANCH" ]
 	then
 		projectVersion=`cat $TESTCODE/releases.cfg | grep '[^:]v[[:digit:]]*r[[:digit:]]*p[[:digit:]]*' | grep $DIRACBRANCH | head -1 | sed 's/ //g'`
@@ -357,7 +347,7 @@ function getCFGFile(){
 
 	cp $TESTCODE/DIRAC/tests/Jenkins/install.cfg $SERVERINSTALLDIR/
 	sed -i s/VAR_Release/$projectVersion/g $SERVERINSTALLDIR/install.cfg
-	cat $SERVERINSTALLDIR/install.cfg
+	#cat $SERVERINSTALLDIR/install.cfg
 }
 
 
