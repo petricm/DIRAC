@@ -13,27 +13,6 @@ addons:
     - mysql-client-5.6
 
 before_install:
-  - mysql -e "create database IF NOT EXISTS AccountingDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS ComponentMonitoringDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS DataLoggingDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS FileCatalogDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS InstalledComponentsDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS JobDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS JobLoggingDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS NotificationDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS OverlayDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS PilotAgentsDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS ProcessDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS ProxyDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS ReqDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS ResourceManagementDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS ResourceStatusDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS SandboxMetadataDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS StorageManagementDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS SystemLoggingDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS TaskQueueDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS TransformationDB;" -uroot
-  - mysql -e "create database IF NOT EXISTS UserProfileDB;" -uroot
   - mysqladmin -u root password testDirac
 
 # command to install dependencies
