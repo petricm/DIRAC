@@ -44,8 +44,9 @@ install:
 script:
   - export PYTHONPATH=${PWD%/*}
   - ls $PYTHONPATH
-  - alias hostip="ip route show 0.0.0.0/0 | grep -Eo 'via \S+' | awk '{ print \$2 }'"
-  - docker run -d -i -t --add-host=mysqlmachine:$(hostip) --name testinstance -v ${PWD}:/root/TestCode/DIRAC ilcdirac/slc6-base /bin/bash
+  - export HOSTIP=`ip route show 0.0.0.0/0 | grep -Eo 'via \S+' | awk '{ print \$2 }'`
+  - echo $HOSTIP
+  - docker run -d -i -t --add-host=mysqlmachine:$HOSTIP --name testinstance -v ${PWD}:/root/TestCode/DIRAC ilcdirac/slc6-base /bin/bash
   - export CONTAINER=`sudo docker ps -q`
   - docker exec $CONTAINER /bin/bash -c "cd && source TestCode/DIRAC/tests/Jenkins/setup_travis.sh && source TestCode/DIRAC/tests/Jenkins/dirac_ci.sh && fullInstallDIRAC"
 
