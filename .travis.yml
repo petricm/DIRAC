@@ -10,6 +10,6 @@ install:
 script:
   - export PYTHONPATH=${PWD%/*}
   - ls $PYTHONPATH
-  - py.test
-after_success:
-  - coveralls
+  - cd ..
+  - cp DIRAC/.pylintrc .
+  - pylint DIRAC --output-format=json
