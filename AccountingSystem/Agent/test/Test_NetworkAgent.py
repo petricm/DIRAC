@@ -4,7 +4,7 @@
 import DIRAC.AccountingSystem.Agent.NetworkAgent as module
 import unittest
 
-from mock.mock import MagicMock
+from mock import MagicMock
 
 __RCSID__ = "$Id$"
 
