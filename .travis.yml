@@ -2,13 +2,16 @@ language: python
 python:
   - "2.7"
 
+git:
+  depth: false
+
 env:
   matrix:
     - CHECK=pytest
     - CHECK=docs
     - CHECK=pylint
     - CHECK=format
-
+    - CHECK=tag
 
 # command to install dependencies
 install: 
@@ -27,6 +30,8 @@ script:
     then travis_wait 30 .travis.d/runPylint.sh;
     elif [[ "${CHECK}" == "format" ]] && [[ "${TRAVIS_PULL_REQUEST}" != "false" ]];
     then git remote add GH https://github.com/DIRACGrid/DIRAC.git; git fetch --no-tags GH ${TRAVIS_BRANCH}; git branch -vv; git diff -U0 GH/${TRAVIS_BRANCH} | pycodestyle --diff;
+    elif [[ "${CHECK}" != "tag" ]][[ "${TRAVIS_REPO_SLUG}" == "DIRACGrid/DIRAC"  ]];
+    then .travis.d/verify__init__.sh;
     fi
 
 ## ignore errors for sourcefiles "-i"
