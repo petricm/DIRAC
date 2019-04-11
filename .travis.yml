@@ -30,7 +30,7 @@ script:
     then travis_wait 30 .travis.d/runPylint.sh;
     elif [[ "${CHECK}" == "format" ]] && [[ "${TRAVIS_PULL_REQUEST}" != "false" ]];
     then git remote add GH https://github.com/DIRACGrid/DIRAC.git; git fetch --no-tags GH ${TRAVIS_BRANCH}; git branch -vv; git diff -U0 GH/${TRAVIS_BRANCH} | pycodestyle --diff;
-    elif [[ "${CHECK}" != "tag" ]];
+    elif [[ "${CHECK}" == "tag" ]];
     then .travis.d/verify__init__.sh;
     fi
 
