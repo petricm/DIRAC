@@ -22,10 +22,10 @@ else
   export DIRACVersion="v${majorVersion// }r${minorVersion// }-pre${preVersion// }"
 fi
 
-if [ $TRAVIS_BRANCH == "integration" ] || [ $TRAVIS_BRANCH == "master" ]; then
-  export DIRACLastTag="Not yet tagged"
-else
+if [ $TRAVIS_BRANCH == rel-* ]; then
   DIRACLastTag=`git tag -l ${TRAVIS_BRANCH//rel-}* --sort=committerdate | tail -1`
+else
+  DIRACLastTag="Not tagged"
 fi
 
 echo ""
