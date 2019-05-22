@@ -8,7 +8,7 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-16.04'
-container: ubuntu:16.04
+container: ubuntu:14.04
 
 strategy:
   matrix:
@@ -22,9 +22,9 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    sudo apt-get update
-    sudo apt-get --assume-yes install mysql-server
-    sudo apt-get --assume-yes install libmysqlclient-dev
+    apt-get update
+    apt-get --assume-yes install mysql-server
+    apt-get --assume-yes install libmysqlclient-dev
   displayName: 'Install OS dependencies'
 
 - script: |
