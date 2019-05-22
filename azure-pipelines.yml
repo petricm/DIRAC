@@ -7,7 +7,9 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-14.04'
+  vmImage: 'ubuntu-16.04'
+container: ubuntu:16.04
+
 strategy:
   matrix:
     Python27:
