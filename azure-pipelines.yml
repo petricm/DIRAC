@@ -23,4 +23,5 @@ steps:
 
 - script: |
     lsb_release -a
+    ls
   displayName: 'Test'
