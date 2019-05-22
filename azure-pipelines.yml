@@ -20,8 +20,8 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    apt-get update
-    apt-get --assume-yes install mysql-server
+    sudo apt-get update
+    sudo apt-get --assume-yes install mysql-server
   displayName: 'Install OS dependencies'
 
 - script: |
