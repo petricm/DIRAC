@@ -22,5 +22,5 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    docker ps
+    lsb_release -a
   displayName: 'Test'
