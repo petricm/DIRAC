@@ -27,7 +27,6 @@ steps:
   displayName: 'Install OS dependencies'
 
 - script: |
-    apt-get install mysql
     python -m pip install --upgrade pip
     pip install -r requirements.txt
   displayName: 'Install dependencies'
