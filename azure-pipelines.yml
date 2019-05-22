@@ -20,6 +20,11 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
+    apt-get update
+    apt-get --assume-yes install mysql-server
+  displayName: 'Install OS dependencies'
+
+- script: |
     apt-get install mysql
     python -m pip install --upgrade pip
     pip install -r requirements.txt
